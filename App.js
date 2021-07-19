@@ -11,28 +11,36 @@ import {
   View,
 } from 'react-native';
 import NetworkImg from './assets/network.png'
-// import Employee from './src/ui/Employee.jsx'
+import Employee from './src/ui/Employee';
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const [Continue,setContinue] = useState(false)
+
   return (
     <View style={styles.main} >
+  { !Continue &&
+    <>
     <View style={styles.container}>
         <Text style={styles.title}>ScaleTeam Technologies PYT.LTD</Text>
         <Text style={styles.subtitle}>TEAM WORK GET RIGHT SOLUNTION</Text>
-       <Image source={NetworkImg} style={styles.img} />
     </View>
+    <View style={{flex:4}}>
+       <Image source={NetworkImg} style={styles.img} />
+    </View>   
   
     <View style={styles.button} >
     <Button
+    style={{borderRadius:50}}
   onPress={()=>setContinue(true)}
   title="Continue"
   color="red"
   accessibilityLabel="Learn more about this purple button"
 />
     </View>
-    {/* <Employee/> */}
+      </>
+    }
+    {Continue && <Employee/>}
     </View>
   );
 };
@@ -40,31 +48,26 @@ const App = () => {
 const styles = StyleSheet.create({
   main:{
     backgroundColor:"black",
-    height:"100%",
-    width:"100%"
+    flex:2
   },
   container: {
     paddingHorizontal: 24,
+    flex:1,
+    justifyContent:"center",
     borderRadius:10,
-    display:"flex",
+    // display:"flex",
   },
   button:{
-    width:"50%",
-    height:"50%",
-    borderRadius:0,
-    borderRadius:20,
-    marginHorizontal:100,
-    marginTop:"20%"
+    flex:2,
+    marginHorizontal:80,
   },
   img:{
-    marginTop:100,
-    height:"50%",
-    width:"auto",
+    height:"100%",
+    width:"100%",
     display:"flex",
     justifyContent:"center"
   },
   title:{
-    marginTop:"30%",
     textAlign:"center",
     justifyContent:"center",
     fontSize:20,
