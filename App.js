@@ -50,9 +50,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1
   },
+  container:{
+    marginTop:10
+  },
   button: {
     marginHorizontal: 80,
-    marginBottom: 5
+    marginBottom: 20
   },
   img: {
     height: "100%",
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
     fontSize: 20,
-    color: "white"
+    color: "black"
   },
   subtitle: {
     textAlign: "center",

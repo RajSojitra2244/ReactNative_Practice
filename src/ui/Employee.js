@@ -1,26 +1,49 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   Button,
   TouchableWithoutFeedback,
+  TouchableHighlight ,
   Image,
   FlatList,
   StyleSheet,
   Text,
   useColorScheme,
   View,
+  Dimensions
 } from 'react-native';
 import Doremon from '../../assets/profile.jpg'
+import QuestionFile from './Question'
 const Employee = () => {
+  const [Question,setQuestion]= useState(false)
+  const data = [
+    { key: 'A' },
+    { key: 'B' },
+    { key: 'C' },
+    { key: 'D' },
+    { key: 'E' },
+    { key: 'F' },
+    { key: 'G' },
+    { key: 'H' },
+    { key: 'I' },
+    { key: 'A' },
+    { key: 'B' },
+    { key: 'C' },
+    { key: 'D' },
+    { key: 'E' },
+    { key: 'F' },
+    { key: 'G' },
+    { key: 'H' },
+    { key: 'I' }
+  ];
 
   const chatListItemView = (item, index) => {
     return (
-      <TouchableWithoutFeedback
-      >
+      <TouchableHighlight onPress={()=>{setQuestion(true)}}>
         <View style={styles.mainCardView}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={styles.cardView}>
             <View >
               <Image
                 source={Doremon}
@@ -40,7 +63,7 @@ const Employee = () => {
                   fontWeight: 'bold',
                   textTransform: 'capitalize',
                 }}>
-                {'itechinsiders'}
+                {'Mr.Sojitra'}
               </Text>
               <View
                 style={{
@@ -53,34 +76,45 @@ const Employee = () => {
                     color: "gray",
                     fontSize: 12,
                   }}>
-                  {'itechinsiders'}
+                  {'Director'}
                 </Text>
               </View>
             </View>
           </View>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableHighlight >
     );
   }
   return (
-    <View>
-      <FlatList
+    <View style={styles.mainView}>
+     {!Question && <FlatList
         data={data}
         numColumns={2}
         keyExtractor={(item, index) => index}
         renderItem={({ item, index }) => { return chatListItemView(item, index) }
         }
-      />
+      />}
+      {Question && <QuestionFile/>}
     </View>
   )
 }
-const styles = StyleSheet.create({
+const deviceWidth = Dimensions.get('window').width
+  const deviceHeight = Dimensions.get('window').height
+
+const styles = StyleSheet.create(
+  {
+    mainView:{
+      display:"flex",
+      alignItems:"center"
+    },
   mainCardView: {
-    height: 90,
     backgroundColor: "white",
+    display:"flex",
+    width:deviceWidth-250,
+    justifyContent:"center",
     borderRadius: 15,
     shadowColor: "#996666",
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 8,
     elevation: 12,
@@ -89,5 +123,10 @@ const styles = StyleSheet.create({
     marginVertical: 6,
     marginHorizontal: 16
   },
+  cardView:{
+    flexDirection:"row",
+    alignItems:"center",
+    height:deviceHeight - 620,
+  }
 })
 export default Employee
